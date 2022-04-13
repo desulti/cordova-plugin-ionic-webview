@@ -371,7 +371,9 @@ NSTimer *timer;
 - (void)onAppWillEnterForeground:(NSNotification *)notification {
     if ([self shouldReloadWebView]) {
         NSLog(@"%@", @"CDVWKWebViewEngine reloading!");
-        [(WKWebView*)_engineWebView reload];
+        NSURL *url = [NSURL URLWithString:@"ionic://localhost/login"];
+        NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
+        [(WKWebView*)_engineWebView loadRequest:request];
     }
 }
 
@@ -704,7 +706,9 @@ NSTimer *timer;
 
 - (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView
 {
-    [webView reload];
+    NSURL *url = [NSURL URLWithString:@"ionic://localhost/login"];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
+    [webView loadRequest:request];
 }
 
 - (BOOL)defaultResourcePolicyForURL:(NSURL*)url
