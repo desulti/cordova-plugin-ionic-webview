@@ -370,6 +370,7 @@ NSTimer *timer;
 
 - (void)onAppWillEnterForeground:(NSNotification *)notification {
     if ([self shouldReloadWebView]) {
+        //Desulti custom redirect
         NSLog(@"%@", @"CDVWKWebViewEngine reloading!");
         NSURL *url = [NSURL URLWithString:@"ionic://localhost/login"];
         NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
@@ -706,6 +707,7 @@ NSTimer *timer;
 
 - (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView
 {
+    //Desulti custom redirect
     NSURL *url = [NSURL URLWithString:@"ionic://localhost/login"];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
     [webView loadRequest:request];
